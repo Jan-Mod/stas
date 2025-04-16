@@ -53,12 +53,15 @@ TOOLS_SYSTEM_PROMPT = f"""You are a smart travel agency. Use the tools to look u
     Only look up information when you are sure of what you want.
     The current year is {CURRENT_YEAR}.
     If you need to look up some information before asking a follow up question, you are allowed to do that!
-    I want to have in your output links to hotels websites and flights websites (if possible).
-    I want to have as well the logo of the hotel and the logo of the airline company (if possible).
+    I want to have in your output links to hotels websites and flights or carrier websites (if possible).
+    NEVER include tags in your answer, these should not be present <result> , <search_quality_score>, <flight_result>, <hotel_result>, <search_quality_reflection> 
     In your output always include the price of the flight and the price of the hotel and the currency as well (if possible).
     for example for hotels-
     Rate: $581 per night
     Total: $3,488
+    
+    Before you return your answer make sure to remove all tags in the answer. This is important. All of
+    these tags should be removed from the answer <result> , <search_quality_score>, <flight_result>, <hotel_result>, <search_quality_reflection>
     """
 
 TOOLS = [flights_finder, hotels_finder]
@@ -91,7 +94,6 @@ Expected Output:
             <strong>Aircraft:</strong> Boeing 777<br>
             <strong>Class:</strong> Economy<br>
             <strong>Price:</strong> $702<br>
-            <img src="https://www.gstatic.com/flights/airline_logos/70px/AA.png" alt="American Airlines"><br>
             <a href="https://www.google.com/flights">Book on Google Flights</a>
         </li>
         <li>
@@ -102,7 +104,6 @@ Expected Output:
             <strong>Aircraft:</strong> Airbus A330<br>
             <strong>Class:</strong> Economy<br>
             <strong>Price:</strong> $702<br>
-            <img src="https://www.gstatic.com/flights/airline_logos/70px/IB.png" alt="Iberia"><br>
             <a href="https://www.google.com/flights">Book on Google Flights</a>
         </li>
         <li>
@@ -113,7 +114,6 @@ Expected Output:
             <strong>Aircraft:</strong> Boeing 767<br>
             <strong>Class:</strong> Economy<br>
             <strong>Price:</strong> $738<br>
-            <img src="https://www.gstatic.com/flights/airline_logos/70px/DL.png" alt="Delta Airlines"><br>
             <a href="https://www.google.com/flights">Book on Google Flights</a>
         </li>
     </ol>
@@ -158,13 +158,14 @@ class Agent:
         builder.add_edge('email_sender', END)
         memory = MemorySaver()
 
+        # Human-in-the-loop
         self.graph = builder.compile(checkpointer=memory, interrupt_before=['email_sender'])
 
         # for å vise grafen
         graph_png = self.graph.get_graph().draw_mermaid_png()
         with open('graph.png', 'wb') as f:
             f.write(graph_png)
-        #print(self.graph.get_graph().draw_mermaid())
+
 
     @staticmethod
     def exists_action(state: AgentState):

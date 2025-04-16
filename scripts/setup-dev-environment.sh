@@ -16,7 +16,6 @@ rm -rf .venv/* && \
   source .venv/bin/activate && \
   pip3 install pip --upgrade && \
   pip3 install -r $app_requirements &&
-  playwright install && \
 
 source .venv/bin/activate
 echo ""

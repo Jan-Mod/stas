@@ -1,0 +1,17 @@
+Autokoder
+
+Hvilken dato er det i dag? 
+Sammenlign verdiutvikling hittil i år for META og TESLA.
+Bruk yfinance for å hente aksjekurser.
+Bruk pyplot for å plotte grafen som viser verdiutvikling.  Lagre grafen som 'meta_vs_tsla.png'
+
+Les inn filen '../data/intra_vs_overnight.csv' ved å bruke Pandas. Filen er semikolonseparert.
+Plot verdiene av 'Overnight_Sum'for hver enkelt Ticker  Lagre koden i filen overnight_graph.py og grafen som overnight_graph.png
+
+
+Avsted
+Reiser fra Oslo den torsdag 28. november og returnerer den 1. desember. Jeg skal til Amsterdam. 
+Ønsker å bo i Jordaan-området.
+Finn forslag til fly og hotell
+
+

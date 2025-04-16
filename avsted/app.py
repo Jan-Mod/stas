@@ -89,7 +89,7 @@ def render_ui():
     st.markdown('<div class="sub-title">Oppgi reiseønsker og få forslag på fly og hotell:</div>',
                 unsafe_allow_html=True)
     user_input = st.text_area(
-        'Reiseforespørsel',
+        'Kor ska vi reis?',
         height=200,
         key='query',
         placeholder='Skriv reiseønskene dine her...',

@@ -3,8 +3,11 @@ langchain
 langchain-openai
 boto3
 langgraph
-#grandalf==0.8
-sendgrid==6.11.0
 streamlit==1.38.0
-serpapi==0.1.5
+autogen
 langchain-aws
+autogen-agentchat~=0.2
+matplotlib
+yfinance
+serpapi==0.1.5
+sendgrid==6.11.0
